@@ -58,7 +58,7 @@ class GameScene: SKScene {
     
     private func setupNavigation() {
         let backBtn = CustomSKButton(texture: SKTexture(imageNamed: "btnBack"))
-        backBtn.size = .init(width: 80, height: 80)
+        backBtn.size = .init(width: 80.autoSize, height: 80.autoSize)
         backBtn.anchorPoint = .init(x: 0, y: 1.0)
         backBtn.position = CGPoint(x: 24.autoSize, y: size.height - 58.autoSize)
         backBtn.normal = UIImage(named: "btnBack")
@@ -72,13 +72,13 @@ class GameScene: SKScene {
          livesLabel.fontName = "Inter-Bold"
          livesLabel.horizontalAlignmentMode = .right
          livesLabel.verticalAlignmentMode = .top
-         livesLabel.position = CGPoint(x: size.width - 24.autoSize, y: size.height - 78.autoSize) // Правый верхний угол
+         livesLabel.position = CGPoint(x: size.width - 24.autoSize, y: size.height - 78.autoSize)
          livesLabel.zPosition = 50
          addChild(livesLabel)
         
         let emptyTexture = SKTexture()
         let plusButton = CustomSKButton(texture: emptyTexture)
-            plusButton.size = CGSize(width: 60, height: 60)
+            plusButton.size = CGSize(width: 60.autoSize, height: 60.autoSize)
             plusButton.color = .green
             plusButton.colorBlendFactor = 1.0
             plusButton.zPosition = 50
@@ -90,7 +90,7 @@ class GameScene: SKScene {
             plusButton.action = { self.increaseSize() }
 
             let minusButton = CustomSKButton(texture: emptyTexture)
-            minusButton.size = CGSize(width: 60, height: 60)
+            minusButton.size = CGSize(width: 60.autoSize, height: 60.autoSize)
             minusButton.color = .green
             minusButton.colorBlendFactor = 1.0
             minusButton.zPosition = 50
@@ -111,10 +111,10 @@ class GameScene: SKScene {
    
     private func addBall() {
         centeredSprite = SKSpriteNode(texture: SKTexture(imageNamed: "imgBall"))
-        centeredSprite?.size = CGSize(width: 120, height: 120)
+        centeredSprite?.size = CGSize(width: 120.autoSize, height: 120.autoSize)
         centeredSprite?.position = CGPoint(x: size.width / 2, y: size.height / 2)
         centeredSprite?.zPosition = 10
-        centeredSprite?.physicsBody = SKPhysicsBody(circleOfRadius: 60)
+        centeredSprite?.physicsBody = SKPhysicsBody(circleOfRadius: 60.autoSize)
         centeredSprite?.physicsBody?.isDynamic = true
         centeredSprite?.physicsBody?.categoryBitMask = 1
         centeredSprite?.physicsBody?.contactTestBitMask = 2
@@ -133,45 +133,45 @@ class GameScene: SKScene {
     }
 
     private func decreaseSize() {
-           centeredSprite?.size = CGSize(width: 60, height: 60)
-        centeredSprite?.physicsBody = SKPhysicsBody(circleOfRadius: 30)
+           centeredSprite?.size = CGSize(width: 60.autoSize, height: 60.autoSize)
+        centeredSprite?.physicsBody = SKPhysicsBody(circleOfRadius: 30.autoSize)
        }
     
     private func increaseSize() {
-           centeredSprite?.size = CGSize(width: 120, height: 120)
-        centeredSprite?.physicsBody = SKPhysicsBody(circleOfRadius: 60)
+           centeredSprite?.size = CGSize(width: 120.autoSize, height: 120.autoSize)
+        centeredSprite?.physicsBody = SKPhysicsBody(circleOfRadius: 60.autoSize)
        }
 
     private func addBlockOne() {
         let blockSpriteOne = SKSpriteNode(texture: SKTexture(imageNamed: "imgBlock"))
-        blockSpriteOne.size = CGSize(width: 200, height: 20)
-        blockSpriteOne.position = CGPoint(x: -blockSpriteOne.size.width / 2, y: ((size.height / 2) - 50)) // Левый край экрана
+        blockSpriteOne.size = CGSize(width: 200.autoSize, height: 20.autoSize)
+        blockSpriteOne.position = CGPoint(x: -blockSpriteOne.size.width / 2, y: ((size.height / 2) - 50))
         blockSpriteOne.zPosition = 10
-        blockSpriteOne.physicsBody = SKPhysicsBody(rectangleOf: blockSpriteOne.size) // Добавляем физику
+        blockSpriteOne.physicsBody = SKPhysicsBody(rectangleOf: blockSpriteOne.size)
         blockSpriteOne.physicsBody?.isDynamic = true
         blockSpriteOne.physicsBody?.categoryBitMask = 2
         blockSpriteOne.physicsBody?.contactTestBitMask = 1
         blockSpriteOne.physicsBody?.collisionBitMask = 0
         addChild(blockSpriteOne)
         
-        let moveAction = SKAction.moveTo(x: size.width + blockSpriteOne.size.width / 2, duration: 5.0) // Движение вправо
+        let moveAction = SKAction.moveTo(x: size.width + blockSpriteOne.size.width / 2, duration: 5.0)
         let removeAction = SKAction.removeFromParent()
         blockSpriteOne.run(SKAction.sequence([moveAction, removeAction]))
     }
 
     private func addBlockTwo() {
         let blockSpriteTwo = SKSpriteNode(texture: SKTexture(imageNamed: "imgBlock"))
-        blockSpriteTwo.size = CGSize(width: 200, height: 20)
-        blockSpriteTwo.position = CGPoint(x: size.width + blockSpriteTwo.size.width / 2, y: ((size.height / 2) + 50)) // Правый край экрана
+        blockSpriteTwo.size = CGSize(width: 200.autoSize, height: 20.autoSize)
+        blockSpriteTwo.position = CGPoint(x: size.width + blockSpriteTwo.size.width / 2, y: ((size.height / 2) + 50))
         blockSpriteTwo.zPosition = 10
-        blockSpriteTwo.physicsBody = SKPhysicsBody(rectangleOf: blockSpriteTwo.size) // Добавляем физику
+        blockSpriteTwo.physicsBody = SKPhysicsBody(rectangleOf: blockSpriteTwo.size)
         blockSpriteTwo.physicsBody?.isDynamic = true
         blockSpriteTwo.physicsBody?.categoryBitMask = 2
         blockSpriteTwo.physicsBody?.contactTestBitMask = 1
         blockSpriteTwo.physicsBody?.collisionBitMask = 0
         addChild(blockSpriteTwo)
         
-        let moveAction = SKAction.moveTo(x: -blockSpriteTwo.size.width / 2, duration: 5.0) // Движение влево
+        let moveAction = SKAction.moveTo(x: -blockSpriteTwo.size.width / 2, duration: 5.0)
         let removeAction = SKAction.removeFromParent()
         blockSpriteTwo.run(SKAction.sequence([moveAction, removeAction]))
     }
@@ -218,9 +218,8 @@ extension GameScene: SKPhysicsContactDelegate {
     }
     
     private func handleCollision(with contact: SKPhysicsContact) {
-        vibrationFeedback.impactOccurred() // Вибрация при столкновении
+        vibrationFeedback.impactOccurred()
         
-        // Удаляем блоки при столкновении
         if let block = contact.bodyA.node as? SKSpriteNode, block != centeredSprite {
             block.removeFromParent()
         }
@@ -228,19 +227,14 @@ extension GameScene: SKPhysicsContactDelegate {
             block.removeFromParent()
         }
 
-        // Проверяем, можно ли увеличивать счетчик
         if canIncreaseCollisionCount {
-            // Увеличиваем счетчик столкновений и уменьшаем количество жизней
             collisionCount += 1
             lives -= 1
 
-            // Обновляем текст с количеством жизней
             livesLabel.text = "Lives: \(lives)"
             
-            // Блокируем возможность увеличения счетчика на 0.5 секунды
             canIncreaseCollisionCount = false
             
-            // Через 0.5 секунды снимаем блокировку
             let waitAction = SKAction.wait(forDuration: 0.5)
             let enableAction = SKAction.run { [weak self] in
                 self?.canIncreaseCollisionCount = true
@@ -248,10 +242,9 @@ extension GameScene: SKPhysicsContactDelegate {
             run(SKAction.sequence([waitAction, enableAction]))
         }
 
-        // Проверяем, не превысило ли количество столкновений 10
         if collisionCount >= 5 {
-            centeredSprite?.removeAllActions() // Останавливаем вращение
-            removeAllActions() // Останавливаем появление блоков
+            centeredSprite?.removeAllActions()
+            removeAllActions()
             resultTransfer?(.restart)
         }
     }

@@ -34,8 +34,8 @@ extension GameVC {
         gameSceneView.backgroundColor = .clear
         gameSceneView.presentScene(gameScene)
         view.addSubview(gameSceneView)
-        gameScene.view?.showsFPS = true
-        gameSceneView.showsPhysics = true
+        gameScene.view?.showsFPS = false
+        gameSceneView.showsPhysics = false
         
     }
     
